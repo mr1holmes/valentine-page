@@ -119,11 +119,19 @@ h1 {
   color: var(--rose-dark);
   border: 2px dashed rgba(232, 93, 117, 0.6);
   transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+  padding: 0.35rem 0.55rem;
 }
 
 .btn-no:hover {
   transform: translateY(-2px) rotate(-2deg);
   box-shadow: 0 10px 20px rgba(232, 93, 117, 0.2);
+}
+
+.btn-no img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .note {
