@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Will You Be My Valentine?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="gate" id="gate" aria-labelledby="gate-title">
+    <div class="gate-card">
+      <p class="gate-eyebrow">A little secret</p>
+      <h1 id="gate-title">Enter our code</h1>
+      <p class="gate-subtitle">Only one person has this.</p>
+      <div class="gate-inputs">
+        <input
+          id="codeInput"
+          type="text"
+          inputmode="text"
+          autocomplete="off"
+          placeholder="Type the code"
+          aria-label="Access code"
+        />
+        <button class="btn btn-yes" id="unlockBtn">Unlock</button>
+      </div>
+      <p class="gate-error" id="gateError" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <main class="hero" id="mainContent" aria-hidden="true">
+    <section class="card" aria-labelledby="main-title">
+      <div id="questionBlock" class="hidden" aria-hidden="true">
+        <p class="eyebrow">Shristi 🦌, I have a question...</p>
+        <h1 id="main-title">Will you be my Valentine?</h1>
+        <div class="actions" id="actions" role="group" aria-label="Answer choices">
+          <button class="btn btn-yes" id="yesBtn">Hnjii</button>
+          <button class="btn btn-no" id="noBtn">Ehh 🙅</button>
+        </div>
+        <p class="note" id="note">(No pressure, but this button likes to play hard to get.)</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
