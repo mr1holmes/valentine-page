@@ -9,6 +9,9 @@ const unlockBtn = document.getElementById("unlockBtn");
 const gateError = document.getElementById("gateError");
 const questionBlock = document.getElementById("questionBlock");
 const actions = document.getElementById("actions");
+const noPopover = document.getElementById("noPopover");
+const noPopoverImg = document.getElementById("noPopoverImg");
+const noPopoverCaption = document.getElementById("noPopoverCaption");
 
 const ACCESS_HASH = "e966318c17576aa0bf0a09999f46e9bd1f7f148e06360664484e75f5ef8dd576";
 const ACCESS_KEY = "valentine-access-granted";
@@ -17,6 +20,9 @@ let dodgeCount = 0;
 let typingTimer = null;
 let typingIndex = 0;
 let lastDodgeAt = 0;
+let noImageIndex = 0;
+let popoverTimer = null;
+let popoverCaptionIndex = 0;
 
 const messages = [
   "Nice try, Shristi.",
@@ -37,6 +43,20 @@ const excuses = [
   "Loading courage... 83%...",
   "Consulting the stars... brb.",
   "System says: yes is optimal.",
+];
+
+const noImages = [
+  "assets/image1.webp",
+  "assets/image2.webp",
+  "assets/image3.webp",
+  "assets/Untitled.webp",
+];
+
+const noCaptions = [
+  "Are you sure? 😄",
+  "No? But why not? 🥺",
+  "This is your last chance... 😅",
+  "Okay okay, I see you. 😏",
 ];
 
 function unlock() {
@@ -130,6 +150,22 @@ function maybeSwapButtons() {
   }
 }
 
+function showNoPopover() {
+  noImageIndex = (noImageIndex + 1) % noImages.length;
+  popoverCaptionIndex = (popoverCaptionIndex + 1) % noCaptions.length;
+  noPopoverImg.src = noImages[noImageIndex];
+  noPopoverCaption.textContent = noCaptions[popoverCaptionIndex];
+  noPopover.classList.add("show");
+  noPopover.setAttribute("aria-hidden", "false");
+  if (popoverTimer) {
+    clearTimeout(popoverTimer);
+  }
+  popoverTimer = setTimeout(() => {
+    noPopover.classList.remove("show");
+    noPopover.setAttribute("aria-hidden", "true");
+  }, 1400);
+}
+
 noBtn.addEventListener("mouseenter", () => {
   const now = Date.now();
   if (now - lastDodgeAt < 320) {
@@ -150,7 +186,7 @@ noBtn.addEventListener("mouseenter", () => {
 });
 
 noBtn.addEventListener("click", () => {
-  noBtn.textContent = dodgeCount % 2 === 0 ? "Still thinking?" : "Nice try";
+  showNoPopover();
   typeNote(dodgeLines[dodgeCount % dodgeLines.length]);
   sprinkleHearts();
 });
@@ -163,6 +199,7 @@ noBtn.addEventListener("touchstart", (event) => {
   }
   lastDodgeAt = now;
   dodgeCount += 1;
+  showNoPopover();
   const x = Math.random() * 260 - 130;
   const y = Math.random() * 160 - 80;
   const wiggle = Math.random() * 18 - 9;
