@@ -9,7 +9,6 @@ const unlockBtn = document.getElementById("unlockBtn");
 const gateError = document.getElementById("gateError");
 const questionBlock = document.getElementById("questionBlock");
 const actions = document.getElementById("actions");
-const noBtnImg = document.getElementById("noBtnImg");
 
 const ACCESS_HASH = "e966318c17576aa0bf0a09999f46e9bd1f7f148e06360664484e75f5ef8dd576";
 const ACCESS_KEY = "valentine-access-granted";
@@ -18,14 +17,6 @@ let dodgeCount = 0;
 let typingTimer = null;
 let typingIndex = 0;
 let lastDodgeAt = 0;
-let noImageIndex = 0;
-
-const noImages = [
-  "assets/image1.webp",
-  "assets/image2.webp",
-  "assets/image3.webp",
-  "assets/Untitled.webp",
-];
 
 const messages = [
   "Nice try, Shristi.",
@@ -156,11 +147,6 @@ noBtn.addEventListener("mouseenter", () => {
     : messages[dodgeCount % messages.length];
   typeNote(tease);
   maybeSwapButtons();
-});
-
-noBtn.addEventListener("click", () => {
-  noImageIndex = (noImageIndex + 1) % noImages.length;
-  noBtnImg.src = noImages[noImageIndex];
 });
 
 noBtn.addEventListener("click", () => {
